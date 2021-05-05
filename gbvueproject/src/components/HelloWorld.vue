@@ -4,10 +4,12 @@
     <input v-model.number="operand2">
     = {{ result }}
     <div>
-      <button @click="sum">+</button>
-      <button @click="sub">-</button>
-      <button @click="div">/</button>
-      <button @click="mul">*</button>
+      <button @click="calculate" id="sum">+</button>
+      <button @click="calculate" id="sub">-</button>
+      <button @click="calculate" id="div">/</button>
+      <button @click="calculate" id="mul">*</button>
+      <button @click="calculate" id="exp">**</button>
+      <button @click="calculate" id="tof">F</button>
     </div>
   </div>
 </template>
@@ -22,17 +24,29 @@ export default {
   props: {
   },
   methods: {
-    sum () {
-      this.result = this.operand1 + this.operand2
-    },
-    sub () {
-      this.result = this.operand1 - this.operand2
-    },
-    div () {
-      this.result = this.operand1 / this.operand2
-    },
-    mul () {
-      this.result = this.operand1 * this.operand2
+    calculate ($event) {
+      switch ($event.target.id) {
+        case 'sum':
+          this.result = this.operand1 + this.operand2
+          break
+        case 'sub':
+          this.result = this.operand1 - this.operand2
+          break
+        case 'div':
+          this.result = this.operand1 / this.operand2
+          break
+        case 'mul':
+          this.result = this.operand1 * this.operand2
+          break
+        case 'exp':
+          this.result = Math.pow(this.operand1, this.operand2)
+          break
+        case 'tof':
+          this.result = (this.operand1 / this.operand2).toFixed()
+          break
+        default:
+          break
+      }
     }
   }
 }
