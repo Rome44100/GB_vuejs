@@ -68,4 +68,10 @@ li {
 a {
   color: #42b983;
 }
+.hello div {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0 0;
+}
 </style>
