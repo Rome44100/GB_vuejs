@@ -47,6 +47,17 @@ export default {
         default:
           break
       }
+    },
+    calc2 (op) {
+      const { operand1, operand2 } = this
+      const operation = {
+        'sum': () => operand1 + operand2,
+        'sub': () => operand1 - operand2,
+        /* 
+        ***
+         */
+      }
+      this.result = operation[op]()
     }
   }
 }
