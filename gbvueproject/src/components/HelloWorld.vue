@@ -3,6 +3,9 @@
     <input v-model.number="operand1">
     <input v-model.number="operand2">
     = {{ result }}
+    <br>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">Отобразить экранную клавиатуру{{ checked }}</label>
     <div>
       <button @click="calculate" id="sum">+</button>
       <button @click="calculate" id="sub">-</button>
@@ -51,11 +54,8 @@ export default {
     calc2 (op) {
       const { operand1, operand2 } = this
       const operation = {
-        'sum': () => operand1 + operand2,
-        'sub': () => operand1 - operand2,
-        /* 
-        ***
-         */
+        sum: () => operand1 + operand2,
+        sub: () => operand1 - operand2
       }
       this.result = operation[op]()
     }
