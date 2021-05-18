@@ -6,11 +6,11 @@
       </header>
       <main>
         <div :class="[$style.columns]">
-          <PaymentForm />
-          <PaymentsLis />
+          <PaymentForm @PushDataForm="addRow" />
+          <PaymentsLis :items="payList" />
         </div>
         <div :class="[$style.columns]">
-          <h2>Диаграммы</h2>
+          <h3>Диаграммы</h3>
         </div>
       </main>
     </div>
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import PaymentsLis from './components/PaymentsLis.vue'
-import PaymentForm from './components/PaymentForm.vue'
+import PaymentsLis from './components/PaymentsLis'
+import PaymentForm from './components/PaymentForm'
 
 export default {
   name: 'App',
@@ -54,6 +54,9 @@ export default {
     }
   },
   methods: {
+    addRow (data) {
+      this.payList.push(data)
+    }
   }
 }
 </script>
@@ -68,6 +71,7 @@ export default {
 }
 main {
   display: flex;
+  gap: 20px;
 }
 .columns {
   border: solid 1px #ccc;
