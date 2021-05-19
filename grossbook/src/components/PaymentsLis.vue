@@ -14,12 +14,6 @@
               <td>{{ item.price }}</td>
           </tr>
       </table>
-      <div>
-          <a href="#1">1</a>
-          <a href="#1">2</a>
-          <a href="#1">3</a>
-          <a href="#1">4</a>
-      </div>
   </div>
 </template>
 
@@ -41,6 +35,7 @@ export default {
 <style module>
 table {
     border-collapse: collapse;
+    width: 100%;
 }
 table td {
     border-bottom: solid 1px #ccc;

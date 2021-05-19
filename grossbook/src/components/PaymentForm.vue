@@ -1,9 +1,17 @@
 <template>
   <div>
-    <input placeholder="Дата" v-model="date">
-    <input placeholder="Категория" v-model="category">
-    <input placeholder="Трата" v-model.number="price">
-    <button @click="save">Добавить!</button>
+    <div>
+      <input type="date" placeholder="Дата" v-model="date">
+    </div>
+    <div>
+      <input placeholder="Категория" v-model="category">
+    </div>
+    <div>
+      <input type="number" placeholder="Трата" v-model.number="price">
+    </div>
+    <div>
+      <button @click="save">Добавить!</button>
+    </div>
   </div>
 </template>
 
@@ -13,7 +21,7 @@ export default {
     return {
       date: '',
       category: '',
-      price: 0
+      price: 1
     }
   },
   methods: {
