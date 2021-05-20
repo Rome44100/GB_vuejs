@@ -10,8 +10,8 @@
           <div v-show="flag" :class="[$style.toggle_form]">
             <PaymentForm @PushDataForm="addRow" />
           </div>
-          <PaymentsLis :items="payList" />
-          <Pagination :onePageNums="onePageNums" :pages="pages" />
+          <PaymentsLis :items="pageList"  />
+          <Pagination :onePageNums="onePageNums" :pages="pages" :page="page" @setNumList="setPage" />
         </div>
         <div :class="[$style.columns]">
           <h3>Диаграммы</h3>
@@ -37,6 +37,7 @@ export default {
     return {
       flag: false,
       onePageNums: 5,
+      pageList: [],
       payList: [
         { date: '2021-05-13', category: 'education', price: 123 },
         { date: '2021-05-12', category: 'education', price: 6000 },
@@ -65,7 +66,8 @@ export default {
         { date: '2021-04-18', category: 'education', price: 465 }
       ],
       listLength: 0,
-      pages: 0
+      pages: 0,
+      page: 1
     }
   },
   methods: {
@@ -74,11 +76,22 @@ export default {
     },
     addRow (data) {
       this.payList.unshift(data)
+      this.listLength = this.payList.length
+      this.pages = this.listLength / this.onePageNums
+      this.getPageList(0, this.onePageNums)
+    },
+    getPageList (start, end) {
+      this.pageList = this.payList.slice(start, end)
+    },
+    setPage (data) {
+      const n = data - 1
+      this.getPageList(this.onePageNums * n, this.onePageNums * n + this.onePageNums)
     }
   },
   mounted () {
     this.listLength = this.payList.length
     this.pages = this.listLength / this.onePageNums
+    this.getPageList(0, this.onePageNums)
   }
 }
 </script>

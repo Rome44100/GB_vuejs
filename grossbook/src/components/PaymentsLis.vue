@@ -22,6 +22,9 @@ export default {
   props: {
     items: {
       type: Array
+    },
+    onePageNums: {
+      type: Number
     }
   },
   methods: {
