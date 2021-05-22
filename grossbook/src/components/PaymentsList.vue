@@ -7,7 +7,7 @@
             <th>Категория</th>
             <th>Сумма</th>
           </tr>
-          <tr v-for="(item, index) in items" :key="index">
+          <tr v-for="(item, index) in getPayList" :key="index">
               <td>{{ index + 1 }}</td>
               <td>{{ item.date }}</td>
               <td>{{ item.category }}</td>
@@ -18,11 +18,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
-    items: {
-      type: Array
-    },
     onePageNums: {
       type: Number
     }
@@ -31,6 +30,11 @@ export default {
     doSome () {
       console.log(this.items)
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getPayList'
+    ])
   }
 }
 </script>
