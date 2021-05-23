@@ -8,10 +8,11 @@
         <div :class="[$style.columns]">
           <button :class="[$style.add_btn]" @click="toggleAddForm">Добавить расходы +</button>
           <div v-show="flag" :class="[$style.toggle_form]">
-            <PaymentForm @PushDataForm="addRow" />
+            <PaymentForm />
           </div>
           <PaymentsList />
-          <Pagination :onePageNums="onePageNums" :pages="pages" :page="page" @setNumList="setPage" />
+          <!--<Pagination :onePageNums="onePageNums" :pages="pages" :page="page" @setNumList="setPage" />-->
+          <Pagination />
         </div>
         <div :class="[$style.columns]">
           <h3>Диаграммы</h3>
@@ -26,7 +27,7 @@ import PaymentsList from './components/PaymentsList'
 import PaymentForm from './components/PaymentForm'
 import Pagination from './components/Pagination'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'App',
@@ -37,12 +38,7 @@ export default {
   },
   data () {
     return {
-      flag: false,
-      onePageNums: 5,
-      pageList: [],
-      listLength: 0,
-      pages: 0,
-      page: 1
+      flag: false
     }
   },
   methods: {
@@ -51,26 +47,15 @@ export default {
     ]),
     toggleAddForm () {
       this.flag = !this.flag
-    },
-    addRow (data) {
-      this.payList.unshift(data)
-      this.listLength = this.payList.length
-      this.pages = this.listLength / this.onePageNums
-      this.getPageList(0, this.onePageNums)
-    },
-    getPageList (start, end) {
-      this.pageList = this.payList.slice(start, end)
-    },
-    setPage (data) {
-      const n = data - 1
-      this.getPageList(this.onePageNums * n, this.onePageNums * n + this.onePageNums)
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getPayList'
+    ])
   },
   mounted () {
     this.fetchData()
-    this.listLength = this.payList.length
-    this.pages = this.listLength / this.onePageNums
-    this.getPageList(0, this.onePageNums)
   }
 }
 </script>

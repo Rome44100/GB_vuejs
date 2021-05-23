@@ -7,8 +7,8 @@
             <th>Категория</th>
             <th>Сумма</th>
           </tr>
-          <tr v-for="(item, index) in getPayList" :key="index">
-              <td>{{ index + 1 }}</td>
+          <tr v-for="(item, index) in getOnePageList" :key="index">
+              <td>{{ item.id }}</td>
               <td>{{ item.date }}</td>
               <td>{{ item.category }}</td>
               <td>{{ item.price }}</td>
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getPayList'
+      'getOnePageList'
     ])
   }
 }

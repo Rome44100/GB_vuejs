@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
@@ -25,10 +27,21 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'addRow'
+    ]),
     save () {
       const { date, category, price } = this
-      this.$emit('PushDataForm', { date, category, price })
+      // this.$emit('PushDataForm', { date, category, price })
+      const id = this.getPayList[0].id + 1
+      this.addRow({ id, date, category, price })
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getLastId',
+      'getPayList'
+    ])
   }
 }
 </script>
