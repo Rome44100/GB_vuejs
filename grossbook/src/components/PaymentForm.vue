@@ -26,6 +26,11 @@ export default {
       price: 1
     }
   },
+  computed: {
+    ...mapGetters([
+      'getPayList'
+    ])
+  },
   methods: {
     ...mapMutations([
       'addRow'
@@ -36,12 +41,6 @@ export default {
       const id = this.getPayList[0].id + 1
       this.addRow({ id, date, category, price })
     }
-  },
-  computed: {
-    ...mapGetters([
-      'getLastId',
-      'getPayList'
-    ])
   }
 }
 </script>

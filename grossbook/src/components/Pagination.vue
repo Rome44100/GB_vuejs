@@ -1,37 +1,33 @@
 <template>
   <div :class="[$style.pagination]">
     <ul>
-      <li v-for="(n, index) in pages" :key="index">
-        <a v-if="page == n" :class="[$style.active]" href="#1" @click="setPage($event)" :data-num="n">{{ n }}</a>
-        <a v-else href="#1" @click="setPage($event)" :data-num="n">{{ n }}</a>
+      <li v-for="(n, index) in getPages" :key="index">
+        <a v-if="n == getCurPage" :class="[$style.active]" href="#1" @click="setPage(n)">{{ n }}</a>
+        <a v-else href="#1" @click="setPage(n)">{{ n }}</a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
-  props: {
-    onePageNums: {
-      type: Number
-    },
-    pages: {
-      type: Number
-    },
-    page: {
-      type: Number
-    }
-  },
   data () {
     return {
       n: 1
     }
   },
   methods: {
-    setPage ($event) {
-      this.$emit('setNumList', $event.target.dataset.num)
-      $event.target.classList.add = 'active'
-    }
+    ...mapMutations([
+      'setPage'
+    ])
+  },
+  computed: {
+    ...mapGetters([
+      'getPages',
+      'getCurPage'
+    ])
   }
 }
 </script>

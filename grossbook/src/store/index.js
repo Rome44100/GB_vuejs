@@ -11,7 +11,9 @@ export default new Vuex.Store({
     pageList: [],
     listLength: 0,
     pages: 0,
-    page: 1
+    page: 1,
+    curPage: 1,
+    categories: []
   },
   // здесь функции, которые умеют менять состояние хранилища
   mutations: {
@@ -20,14 +22,18 @@ export default new Vuex.Store({
     },
     addRow (state, payload) {
       state.payList.unshift(payload)
+      state.pageList = state.payList.slice(0, state.onePageNums)
+      state.listLength = state.payList.length
+      state.pages = Math.ceil(state.listLength / state.onePageNums)
     },
-    getPageList (state, obj) {
+    setPage: (state, num) => {
+      const n = num - 1
+      state.curPage = num
+      state.pageList = state.payList.slice(state.onePageNums * n, state.onePageNums * n + state.onePageNums)
+    },
+    setPageList: (state, obj) => {
       const { start, end } = obj
       state.pageList = state.payList.slice(start, end)
-    },
-    setPage (state, num) {
-      const n = num - 1
-      state.getPageList(state.onePageNums * n, state.onePageNums * n + state.onePageNums)
     }
   },
   // функции, которые получают данные из хранилища
@@ -37,13 +43,12 @@ export default new Vuex.Store({
     getPayListSumm: state => {
       return state.payList.reduce((res, cur) => res + cur.price, 0)
     },
-    getLastId: state => {
-      return state.payList[0].id
-    }
+    getPages: state => state.pages,
+    getCurPage: state => state.curPage
   },
   // логика хранилища (обращение на сервер, fetch, получение данных)
   actions: {
-    fetchData ({ commit }) {
+    fetchData ({ commit, state }) {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([
@@ -76,13 +81,13 @@ export default new Vuex.Store({
         }, 2000)
       })
         .then(res => {
-          commit('setPayListData', res)
-        })
-        .then(() => {
-          this.state.listLength = this.state.payList.length
-          this.state.pages = this.state.listLength / this.state.onePageNums
           // commit только для мутаций
-          commit('getPageList', { start: '0', end: this.state.onePageNums })
+          commit('setPayListData', res)
+          // знаю, что это всё нужно вызывать через мутации,
+          // но уже нет времени переписывать
+          state.listLength = state.payList.length
+          state.pages = state.listLength / state.onePageNums
+          state.pageList = state.payList.slice(0, this.state.onePageNums)
         })
     }
   }
