@@ -10,6 +10,7 @@
           <tr v-for="(item, index) in getOnePageList" :key="index">
               <td>{{ item.id }}</td>
               <td>{{ item.date }}</td>
+              <!-- <td>{{ getCategory[item.category - 1].name }}</td> -->
               <td>{{ item.category }}</td>
               <td>{{ item.price }}</td>
           </tr>
@@ -26,15 +27,16 @@ export default {
       type: Number
     }
   },
-  methods: {
-    doSome () {
-      console.log(this.items)
-    }
-  },
   computed: {
     ...mapGetters([
+      'getCategory',
       'getOnePageList'
     ])
+  },
+  methods: {
+    findCat (id) {
+      return this.getCategory.find(el => el.id === id)
+    }
   }
 }
 </script>

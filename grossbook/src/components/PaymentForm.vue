@@ -5,6 +5,11 @@
     </div>
     <div>
       <input placeholder="Категория" v-model="category">
+      <br>
+      <!-- <select @change="getCatId($event)">
+        <option :value="0">-----</option>
+        <option v-for="(item, index) in getCategory" :key="index" :value="item.id">{{ item.name }}</option>
+      </select> -->
     </div>
     <div>
       <input type="number" placeholder="Трата" v-model.number="price">
@@ -23,21 +28,25 @@ export default {
     return {
       date: '',
       category: '',
-      price: 1
+      price: 1,
+      n: Number
     }
   },
   computed: {
     ...mapGetters([
-      'getPayList'
+      'getPayList',
+      'getCategory'
     ])
   },
   methods: {
     ...mapMutations([
       'addRow'
     ]),
+    getCatId ($event) {
+      this.category = $event.target.value
+    },
     save () {
       const { date, category, price } = this
-      // this.$emit('PushDataForm', { date, category, price })
       const id = this.getPayList[0].id + 1
       this.addRow({ id, date, category, price })
     }
