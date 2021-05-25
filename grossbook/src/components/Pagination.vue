@@ -2,8 +2,8 @@
   <div :class="[$style.pagination]">
     <ul>
       <li v-for="(n, index) in getPages" :key="index">
-        <a v-if="n == getCurPage" :class="[$style.active]" href="#1" @click="setPage(n)">{{ n }}</a>
-        <a v-else href="#1" @click="setPage(n)">{{ n }}</a>
+        <span v-if="n == getCurPage" :class="[$style.active]" @click="setPage(n)">{{ n }}</span>
+        <span v-else @click="setPage(n)">{{ n }}</span>
       </li>
     </ul>
   </div>
@@ -45,13 +45,20 @@ export default {
 .pagination li {
   list-style: none;
 }
-.pagination a {
+.pagination span {
     color: #000;
     text-decoration: none;
     font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    padding-top: 5px;
 }
-.pagination a.active {
+.pagination span.active {
     color: rgb(43, 82, 255);
     cursor: default;
+    background-color: #ccc;
 }
 </style>

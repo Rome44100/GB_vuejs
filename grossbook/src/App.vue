@@ -6,6 +6,20 @@
       </header>
       <main>
         <div :class="[$style.columns]">
+          <ul>
+            <li>
+              <router-link to="/add/payment/Food?value=200" v-slot="{ href }" custom>
+                <a :href="href" @click="setDefaultPay">Еда = 200</a>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/add/payment/Transport?value=50">Транспорт = 50</router-link>
+            </li>
+            <li>
+              <router-link to="/add/payment/Entertainment?value=2000" @click="setDefaultPay">Развлечения = 2000</router-link>
+            </li>
+          </ul>
+          <br>
           <button :class="[$style.add_btn]" @click="toggleAddForm">Добавить расходы +</button>
           <div v-show="flag" :class="[$style.toggle_form]">
             <PaymentForm />
@@ -47,6 +61,11 @@ export default {
     ]),
     toggleAddForm () {
       this.flag = !this.flag
+    },
+    setDefaultPay ($event) {
+      console.log(this.$router)
+      console.log($event)
+      $event.target.preventDefault()
     }
   },
   computed: {
