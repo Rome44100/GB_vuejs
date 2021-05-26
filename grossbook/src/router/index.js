@@ -15,7 +15,7 @@ const router = new Router({
 })
 
 // router.afterEach((to, from) => {
-//   // console.log(to)
+//   console.log(to)
 // })
 
 export default router

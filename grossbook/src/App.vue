@@ -20,9 +20,11 @@
             </li>
           </ul>
           <br>
-          <button :class="[$style.add_btn]" @click="toggleAddForm">Добавить расходы +</button>
-          <div v-show="flag" :class="[$style.toggle_form]">
-            <PaymentForm />
+          <div>
+            <button :class="[$style.add_btn]" @click="toggleAddForm">Добавить расходы +</button>
+            <div v-show="flag" :class="[$style.toggle_form]">
+              <PaymentForm />
+            </div>
           </div>
           <PaymentsList />
           <!--<Pagination :onePageNums="onePageNums" :pages="pages" :page="page" @setNumList="setPage" />-->
@@ -63,9 +65,8 @@ export default {
       this.flag = !this.flag
     },
     setDefaultPay ($event) {
-      console.log(this.$router)
-      console.log($event)
-      $event.target.preventDefault()
+      console.log(this.$route)
+      $event.preventDefault()
     }
   },
   computed: {
@@ -114,7 +115,7 @@ main {
   padding: 30px;
   background-color: #fff;
   width: 20vw;
-  top: 40px;
+  top: 154px;
 }
 .toggle_form input {
   display: inline-block;
