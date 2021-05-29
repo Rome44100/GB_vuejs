@@ -13,7 +13,7 @@
               <!-- <td>{{ getCategory[item.category - 1].name }}</td> -->
               <td>{{ item.category }}</td>
               <td>{{ item.price }}</td>
-              <td><Popup /></td>
+              <td><Popup :id="item.id" /></td>
           </tr>
       </table>
   </div>
@@ -44,9 +44,6 @@ export default {
       return this.getCategory.find(el => el.id === id)
     }
   }
-  // mounted () {
-  //   console.log(this.$modal)
-  // }
 }
 </script>
 
