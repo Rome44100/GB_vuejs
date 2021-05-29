@@ -13,6 +13,7 @@
               <!-- <td>{{ getCategory[item.category - 1].name }}</td> -->
               <td>{{ item.category }}</td>
               <td>{{ item.price }}</td>
+              <td><Popup /></td>
           </tr>
       </table>
   </div>
@@ -21,7 +22,12 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import Popup from '../components/popup'
+
 export default {
+  components: {
+    Popup
+  },
   props: {
     onePageNums: {
       type: Number
@@ -38,6 +44,9 @@ export default {
       return this.getCategory.find(el => el.id === id)
     }
   }
+  // mounted () {
+  //   console.log(this.$modal)
+  // }
 }
 </script>
 

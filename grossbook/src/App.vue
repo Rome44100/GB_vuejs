@@ -59,6 +59,7 @@ export default {
   },
   mounted () {
     this.fetchData()
+    // console.log(this.$modal)
   }
 }
 </script>
