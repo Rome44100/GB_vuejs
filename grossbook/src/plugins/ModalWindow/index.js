@@ -7,15 +7,15 @@ export default {
     this.installed = true
 
     Vue.prototype.$modal = {
-      EventBus: new Vue(),
+      EventBus: new Vue()
 
-      show (name, params) {
-        console.log('Показано')
-        this.EventBus.$emit('show', { name, params })
-      },
-      close () {
-        console.log('Закрыто')
-      }
+      // show (name, params) {
+      //   console.log('Показано')
+      //   this.EventBus.$emit('show', { name, params })
+      // },
+      // close () {
+      //   console.log('Закрыто')
+      // }
     }
   }
 }

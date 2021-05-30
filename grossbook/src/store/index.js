@@ -39,6 +39,13 @@ export default new Vuex.Store({
     setPageList: (state, obj) => {
       const { start, end } = obj
       state.pageList = state.payList.slice(start, end)
+    },
+    deleteRow: (state, id) => {
+      state.payList = state.payList.filter(el => el.id !== id)
+      state.pageList = state.payList.slice(0, state.onePageNums)
+      state.listLength = state.payList.length
+      state.pages = Math.ceil(state.listLength / state.onePageNums)
+      state.curPage = 1
     }
   },
   // функции, которые получают данные из хранилища

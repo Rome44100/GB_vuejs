@@ -3,14 +3,16 @@
       <div @click="onShow" :class="[$style.formWrap]">
         <span :class="[$style.popButton]">+</span>
         <div :class="[$style.popup]" v-if="flag">
-          Редактировать<br>{{ id }}
-          Удалить запись
+          Редактировать<br>
+          <div :class="[$style.delrow]" @click="handleDelRow(id)">Удалить запись</div>
         </div>
       </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   props: {
     id: {
@@ -23,8 +25,14 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'deleteRow'
+    ]),
     onShow () {
       this.flag = !this.flag
+    },
+    handleDelRow (id) {
+      this.deleteRow(id)
     }
   },
   mounted () {
@@ -48,5 +56,9 @@ export default {
     padding: 8px 20px;
     box-shadow: 0 0 16px #ccc;
     z-index: 100;
+}
+.delrow {
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>
