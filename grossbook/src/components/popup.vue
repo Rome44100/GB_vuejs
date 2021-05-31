@@ -1,17 +1,39 @@
 <template>
   <div>
-      <div @click="onShow" :class="[$style.formWrap]">
-        <span :class="[$style.popButton]">+</span>
-        <div :class="[$style.popup]" v-if="flag">
-          Редактировать<br>
-          <div :class="[$style.delrow]" @click="handleDelRow(id)">Удалить запись</div>
-        </div>
+    <div @click="onShow" :class="[$style.formWrap]">
+      <span :class="[$style.popButton]">+</span>
+      <transition name="fade">
+      <div :class="[$style.popup]" v-if="flag">
+        <div :class="[$style.delrow]" @click="getRow(id)">Редактировать</div>
+        <div :class="[$style.delrow]" @click="handleDelRow(id)">Удалить запись</div>
       </div>
+      </transition>
+    </div>
+    <div v-if="showEditFlag" :class="[$style.popup]">
+      <div>
+        <label>
+          Категория:
+          <br>
+          <input v-model="rowCategory">
+        </label>
+      </div>
+      <div>
+        <label>
+          Стоимость:
+          <br>
+          <input type="number" v-model.number="rowPrice">
+        </label>
+      </div>
+      <br>
+      <div>
+        <button @click="editOneRow(id)">Сохранить</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   props: {
@@ -21,18 +43,39 @@ export default {
   },
   data () {
     return {
-      flag: false
+      flag: false,
+      rowPrice: '',
+      rowCategory: '',
+      rowId: Number,
+      showEditFlag: false
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getPayList'
+    ])
   },
   methods: {
     ...mapMutations([
-      'deleteRow'
+      'deleteRow',
+      'editRow'
     ]),
     onShow () {
       this.flag = !this.flag
     },
     handleDelRow (id) {
       this.deleteRow(id)
+    },
+    getRow (id) {
+      const el = this.getPayList.find(el => el.id === id)
+      console.log(el)
+      this.showEditFlag = true
+      this.rowPrice = el.price
+      this.rowCategory = el.category
+    },
+    editOneRow (id) {
+      this.editRow({ id: id, price: this.rowPrice, category: this.rowCategory })
+      this.showEditFlag = false
     }
   },
   mounted () {
@@ -40,6 +83,15 @@ export default {
   }
 }
 </script>
+
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>
 
 <style module>
 .formWrap {

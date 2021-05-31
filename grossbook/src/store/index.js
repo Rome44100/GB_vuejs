@@ -46,6 +46,14 @@ export default new Vuex.Store({
       state.listLength = state.payList.length
       state.pages = Math.ceil(state.listLength / state.onePageNums)
       state.curPage = 1
+    },
+    editRow: (state, obj) => {
+      state.payList.map(el => {
+        if (el.id === obj.id) {
+          el.price = obj.price
+          el.category = obj.category
+        }
+      })
     }
   },
   // функции, которые получают данные из хранилища
@@ -58,6 +66,11 @@ export default new Vuex.Store({
     getPages: state => state.pages,
     getCurPage: state => state.curPage,
     getCategory: state => state.categories
+    // getRow: (state, id) => {
+    //   console.log(state)
+    //   console.log(state.payList.find(el => el.id === id))
+    //   return state.payList.find(el => el.id === id)
+    // }
   },
   // логика хранилища (обращение на сервер, fetch, получение данных)
   actions: {
