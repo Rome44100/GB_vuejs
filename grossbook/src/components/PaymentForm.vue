@@ -1,13 +1,13 @@
 <template>
   <div>
-    <button :class="[$style.add_btn]" @click="toggleAddForm">Добавить расходы +</button>
+    <button :class="[$style.add_btn]" @click="toggleAddForm" id="show_expense_form">Добавить расходы +</button>
     {{ setPrepValues }}
     <div v-show="flag" :class="[$style.toggle_form]">
       <div>
-        <input type="date" placeholder="Дата" v-model="date">
+        <input type="date" placeholder="Дата" v-model="date" name="date">
       </div>
       <div>
-        <input placeholder="Категория" v-model="category">
+        <input placeholder="Категория" v-model="category" name="category">
         <br>
         <!-- <select @change="getCatId($event)">
           <option :value="0">-----</option>
@@ -15,10 +15,10 @@
         </select> -->
       </div>
       <div>
-        <input type="number" placeholder="Трата" v-model.number="price">
+        <input type="number" placeholder="Трата" v-model.number="price" name="expense">
       </div>
       <div>
-        <button @click="save">Добавить!</button>
+        <button @click="save" id="add_expense">Добавить!</button>
       </div>
     </div>
   </div>
@@ -59,6 +59,7 @@ export default {
       this.category = $event.target.value
     },
     save () {
+      this.flag = false
       const { date, category, price } = this
       const id = this.getPayList[0] === undefined ? Math.ceil(Math.random() * 10000) : this.getPayList[0].id + 1
       this.addRow({ id, date, category, price })

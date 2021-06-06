@@ -1,4 +1,4 @@
-import TestComponent from './TestComponent.vue'
+import TestComponent from './TestComponent'
 import { mount } from '@vue/test-utils'
 
 describe ('TestComponent', () => {
@@ -9,6 +9,6 @@ describe ('TestComponent', () => {
       }
     })
     // проверить 
-    expect (Wrapper.text()).toEqual('The message is: Hello from test!')
+    expect (Wrapper.text()).toContain ('Hello from test!')
   })
 })
