@@ -26,7 +26,8 @@
           <Pagination />
         </div>
         <div :class="[$style.columns]">
-          <h3>Диаграммы</h3>
+          <h3>Диаграмма</h3>
+          <Diagramm />
         </div>
       </main>
     </div>
@@ -37,6 +38,7 @@
 import PaymentsList from './components/PaymentsList'
 import PaymentForm from './components/PaymentForm'
 import Pagination from './components/Pagination'
+import Diagramm from './components/Diagramm'
 
 import { mapActions, mapGetters } from 'vuex'
 
@@ -45,7 +47,8 @@ export default {
   components: {
     PaymentsList,
     PaymentForm,
-    Pagination
+    Pagination,
+    Diagramm
   },
   methods: {
     ...mapActions([
