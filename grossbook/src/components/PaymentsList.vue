@@ -54,6 +54,6 @@ table {
 }
 table td {
     border-bottom: solid 1px #ccc;
-    padding: 10px 30px;
+    padding: 10px 28px;
 }
 </style>

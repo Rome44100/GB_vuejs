@@ -27,7 +27,8 @@
         </div>
         <div :class="[$style.columns]">
           <h3>Диаграмма</h3>
-          <Diagramm />
+          <!-- <Diagramm /> -->
+          <SyncfusionChart />
         </div>
       </main>
     </div>
@@ -38,7 +39,8 @@
 import PaymentsList from './components/PaymentsList'
 import PaymentForm from './components/PaymentForm'
 import Pagination from './components/Pagination'
-import Diagramm from './components/Diagramm'
+// import Diagramm from './components/Diagramm'
+import SyncfusionChart from './components/SyncfusionChart'
 
 import { mapActions, mapGetters } from 'vuex'
 
@@ -48,7 +50,8 @@ export default {
     PaymentsList,
     PaymentForm,
     Pagination,
-    Diagramm
+    SyncfusionChart
+    // Diagramm
   },
   methods: {
     ...mapActions([
@@ -62,7 +65,6 @@ export default {
   },
   mounted () {
     this.fetchData()
-    // console.log(this.$modal)
   }
 }
 </script>

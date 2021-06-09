@@ -17,7 +17,8 @@ export default new Vuex.Store({
       { id: 1, name: 'Продукты' },
       { id: 2, name: 'Одежда' },
       { id: 3, name: 'Развлечения' },
-      { id: 4, name: 'Обучение' }
+      { id: 4, name: 'Обучение' },
+      { id: 5, name: 'Отдых' }
     ]
   },
   // здесь функции, которые умеют менять состояние хранилища
@@ -78,33 +79,33 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve([
-            { id: 25, date: '2021-05-13', category: 2, price: 123 },
-            { id: 24, date: '2021-05-12', category: 3, price: 6000 },
-            { id: 23, date: '2021-05-11', category: 2, price: 458 },
-            { id: 22, date: '2021-05-09', category: 2, price: 1023 },
-            { id: 21, date: '2021-05-08', category: 2, price: 123 },
-            { id: 20, date: '2021-05-07', category: 2, price: 23 },
-            { id: 19, date: '2021-05-06', category: 2, price: 523 },
-            { id: 18, date: '2021-05-05', category: 2, price: 423 },
-            { id: 17, date: '2021-05-04', category: 2, price: 223 },
-            { id: 16, date: '2021-05-03', category: 2, price: 105 },
-            { id: 15, date: '2021-05-02', category: 2, price: 157 },
-            { id: 14, date: '2021-05-01', category: 2, price: 540 },
-            { id: 13, date: '2021-04-30', category: 2, price: 85 },
-            { id: 12, date: '2021-04-29', category: 2, price: 805 },
-            { id: 11, date: '2021-04-28', category: 2, price: 546 },
-            { id: 10, date: '2021-04-27', category: 2, price: 8542 },
-            { id: 9, date: '2021-04-26', category: 2, price: 6000 },
-            { id: 8, date: '2021-04-25', category: 2, price: 6000 },
-            { id: 7, date: '2021-04-24', category: 2, price: 5870 },
-            { id: 6, date: '2021-04-23', category: 2, price: 548 },
-            { id: 5, date: '2021-04-22', category: 2, price: 2354 },
-            { id: 4, date: '2021-04-21', category: 2, price: 258 },
-            { id: 3, date: '2021-04-20', category: 2, price: 879 },
-            { id: 2, date: '2021-04-19', category: 2, price: 584 },
-            { id: 1, date: '2021-04-18', category: 2, price: 465 }
+            { id: 25, date: '2021-05-13', category: 'Продукты', price: 123 },
+            { id: 24, date: '2021-05-12', category: 'Обучение', price: 6000 },
+            { id: 23, date: '2021-05-11', category: 'Продукты', price: 458 },
+            { id: 22, date: '2021-05-09', category: 'Продукты', price: 1023 },
+            { id: 21, date: '2021-05-08', category: 'Развлечения', price: 123 },
+            { id: 20, date: '2021-05-07', category: 'Продукты', price: 23 },
+            { id: 19, date: '2021-05-06', category: 'Одежда', price: 523 },
+            { id: 18, date: '2021-05-05', category: 'Развлечения', price: 423 },
+            { id: 17, date: '2021-05-04', category: 'Продукты', price: 223 },
+            { id: 16, date: '2021-05-03', category: 'Отдых', price: 105 },
+            { id: 15, date: '2021-05-02', category: 'Развлечения', price: 157 },
+            { id: 14, date: '2021-05-01', category: 'Одежда', price: 540 },
+            { id: 13, date: '2021-04-30', category: 'Продукты', price: 85 },
+            { id: 12, date: '2021-04-29', category: 'Одежда', price: 805 },
+            { id: 11, date: '2021-04-28', category: 'Развлечения', price: 546 },
+            { id: 10, date: '2021-04-27', category: 'Отдых', price: 8542 },
+            { id: 9, date: '2021-04-26', category: 'Обучение', price: 6000 },
+            { id: 8, date: '2021-04-25', category: 'Развлечения', price: 6000 },
+            { id: 7, date: '2021-04-24', category: 'Продукты', price: 5870 },
+            { id: 6, date: '2021-04-23', category: 'Одежда', price: 548 },
+            { id: 5, date: '2021-04-22', category: 'Обучение', price: 2354 },
+            { id: 4, date: '2021-04-21', category: 'Одежда', price: 258 },
+            { id: 3, date: '2021-04-20', category: 'Продукты', price: 879 },
+            { id: 2, date: '2021-04-19', category: 'Отдых', price: 584 },
+            { id: 1, date: '2021-04-18', category: 'Продукты', price: 465 }
           ])
-        }, 2000)
+        }, 1000)
       })
         .then(res => {
           // commit только для мутаций
