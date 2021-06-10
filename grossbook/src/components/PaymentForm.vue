@@ -1,7 +1,13 @@
 <template>
   <div>
-    <button :class="[$style.add_btn]" @click="toggleAddForm" id="show_expense_form">Добавить расходы +</button>
-    {{ setPrepValues }}
+    <v-btn
+      color="teal"
+      dark
+      @click="toggleAddForm"
+      id="show_expense_form">
+        Добавить расходы
+        <v-icon dark>mdi-plus</v-icon>
+    </v-btn>
     <div v-show="flag" :class="[$style.toggle_form]">
       <div>
         <input type="date" placeholder="Дата" v-model="date" name="date">
@@ -18,9 +24,10 @@
         <input type="number" placeholder="Трата" v-model.number="price" name="expense">
       </div>
       <div>
-        <button @click="save" id="add_expense">Добавить!</button>
+        <v-btn @click="save" id="add_expense">Добавить!</v-btn>
       </div>
     </div>
+    {{ setPrepValues }}
   </div>
 </template>
 
@@ -105,27 +112,21 @@ export default {
 </script>
 
 <style module>
-.add_btn {
-  background-color: #25a79a;
-  color: #fff;
-  border: none;
-  padding: 6px 20px;
-  margin-bottom: 20px;
-  font-weight: 600;
-  cursor: pointer;
-}
 .toggle_form {
   position: absolute;
   border: solid 1px #ccc;
   box-shadow: 2px 2px 3px #ccc;
   padding: 30px;
   background-color: #fff;
-  width: 20vw;
-  top: 154px;
+  width: 30vw;
+  top: 258px;
+  left: 10px;
 }
 .toggle_form input {
   display: inline-block;
   margin: 10px 0;
   width: 100%;
+  border: solid 1px #ccc;
+  padding: 4px;
 }
 </style>

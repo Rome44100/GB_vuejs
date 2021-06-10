@@ -45,7 +45,7 @@ export default Vue.extend({
     return {
       theme: 'Dark',
       data: [
-        { x: 'Preloader', y: 100, r: '100%' }
+        { x: 'Preloader', y: 100, r: '70%' }
         // { x: 'Belgium', y: 551500, r: '70%' },
         // { x: 'Cuba', y: 312685, r: '84%' },
         // { x: 'Dominican Republic', y: 350000, r: '97%' },

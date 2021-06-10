@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
       <table>
           <tr>
             <th>#</th>
@@ -10,23 +10,62 @@
           <tr v-for="(item, index) in getOnePageList" :key="index">
               <td>{{ item.id }}</td>
               <td>{{ item.date }}</td>
-              <!-- <td>{{ getCategory[item.category - 1].name }}</td> -->
               <td>{{ item.category }}</td>
               <td>{{ item.price }}</td>
               <td><Popup :id="item.id" /></td>
           </tr>
       </table>
-  </div>
+  </div> -->
+  <v-data-table
+    :headers="headers"
+    :items="getPayList"
+  >
+  <!-- <template v-slot:top>
+    <v-toolbar
+        flat
+      >
+        <v-divider
+          class="mx-4"
+          inset
+          vertical
+        ></v-divider>
+        <v-spacer></v-spacer>
+        <v-dialog
+          v-model="dialog"
+          max-width="500px"
+        >
+      </v-dialog>
+    </v-toolbar>
+    <template v-slot:item.actions="{ item }">
+      <v-icon
+        small
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+    </template> -->
+  </v-data-table>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
-import Popup from '../components/popup'
+// import Popup from '../components/popup'
 
 export default {
+  data () {
+    return {
+      headers: [
+        { text: '#', value: 'id' },
+        { text: 'Дата', value: 'date' },
+        { text: 'Категория', value: 'category' },
+        { text: 'Расход', value: 'price' }
+      ]
+    }
+  },
   components: {
-    Popup
+    // Popup
   },
   props: {
     onePageNums: {
@@ -36,7 +75,8 @@ export default {
   computed: {
     ...mapGetters([
       'getCategory',
-      'getOnePageList'
+      'getOnePageList',
+      'getPayList'
     ])
   },
   methods: {
@@ -54,6 +94,6 @@ table {
 }
 table td {
     border-bottom: solid 1px #ccc;
-    padding: 10px 28px;
+    padding: 10px 22px;
 }
 </style>

@@ -104,13 +104,14 @@ export default {
     position: absolute;
     right: 0;
     background-color: #fff;
-    min-width: 130px;
-    padding: 8px 20px;
+    min-width: 150px;
+    padding: 10px 20px;
     box-shadow: 0 0 16px #ccc;
     z-index: 100;
 }
 .delrow {
   cursor: pointer;
   text-decoration: underline;
+  margin-bottom: 6px;
 }
 </style>
