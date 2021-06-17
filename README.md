@@ -1,2 +1,2 @@
 # My expenses!
-![alt text](grossbook/screens/main.jpg "Main page.")​
+![alt text](gbvueproject/screens/main.jpg "Main page.")​
