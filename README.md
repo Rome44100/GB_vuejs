@@ -1,2 +1,2 @@
-# GB_vuejs
-![alt text](screenshots/filename.png "Описание будет тут")​
+# My expenses!
+![alt text](screens/main.jpg "Main page.")​
